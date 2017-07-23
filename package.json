@@ -1,11 +1,11 @@
 {
-  "name": "netlify-cms-github-oauth-provider",
+  "name": "netlify-cms-bitbucket-oauth-provider",
   "version": "1.0.0",
   "engines": {
     "node": ">=7.x"
   },
-  "description": "netlify oauth github client sending token in form as netlify service itself",
-  "repository": "https://github.com/vencax/netlify-cms-github-oauth-provider",
+  "description": "netlify oauth bitbucket client sending token in form as netlify service itself",
+  "repository": "https://github.com/zanedev/netlify-cms-bitbucket-oauth-provider",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,7 +16,7 @@
     "cms",
     "auth"
   ],
-  "author": "Vaclav Klecanda <vencax77@gmail.com>",
+  "author": "Zane Staggs <zane@zanedev.com>",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^2.0.0",

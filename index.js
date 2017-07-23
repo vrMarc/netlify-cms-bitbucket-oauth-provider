@@ -12,16 +12,16 @@ const oauth2 = simpleOauthModule.create({
   },
   auth: {
     // Supply GIT_HOSTNAME for enterprise github installs.
-    tokenHost: process.env.GIT_HOSTNAME || 'https://github.com',
-    tokenPath: process.env.OAUTH_TOKEN_PATH || '/login/oauth/access_token',
-    authorizePath: process.env.OAUTH_AUTHORIZE_PATH || '/login/oauth/authorize'
+    tokenHost: process.env.GIT_HOSTNAME || 'https://bitbucket.org/site/oauth2',
+    tokenPath: process.env.OAUTH_TOKEN_PATH || 'https://bitbucket.org/site/oauth2/access_token',
+    authorizePath: process.env.OAUTH_AUTHORIZE_PATH || 'https://bitbucket.org/site/oauth2/authorize'
   }
 })
 
 // Authorization uri definition
 const authorizationUri = oauth2.authorizationCode.authorizeURL({
-  redirect_uri: process.env.REDIRECT_URL,
-  scope: process.env.SCOPES || 'repo,user',
+  // redirect_uri: process.env.REDIRECT_URL, //bitbucket defaults to oauth consumer redirect_url
+  // scope: process.env.SCOPES || 'repository:admin', //bitbucket defaults to oauth consumer scopes
   state: randomstring.generate(32)
 })
 
@@ -49,7 +49,7 @@ app.get('/callback', (req, res) => {
       mess = 'success'
       content = {
         token: token.token.access_token,
-        provider: 'github'
+        provider: 'bitbucket'
       }
     }
 
@@ -60,14 +60,14 @@ app.get('/callback', (req, res) => {
         console.log("recieveMessage %o", e)
         // send message to main window with da app
         window.opener.postMessage(
-          'authorization:github:${mess}:${JSON.stringify(content)}',
+          'authorization:bitbucket:${mess}:${JSON.stringify(content)}',
           e.origin
         )
       }
       window.addEventListener("message", recieveMessage, false)
       // Start handshare with parent
-      console.log("Sending message: %o", "github")
-      window.opener.postMessage("authorizing:github", "*")
+      console.log("Sending message: %o", "bitbucket")
+      window.opener.postMessage("authorizing:bitbucket", "*")
       })()
     </script>`
     return res.send(script)
@@ -79,7 +79,7 @@ app.get('/success', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  res.send('Hello<br><a href="/auth">Log in with Github</a>')
+  res.send('Hello<br><a href="/auth">Log in with Bitbucket</a>')
 })
 
 app.listen(port, () => {

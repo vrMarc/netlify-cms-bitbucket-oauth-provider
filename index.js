@@ -49,6 +49,7 @@ app.get('/callback', (req, res) => {
       mess = 'success'
       content = {
         token: token.token.access_token,
+        expires_at: token.token.expires_at,
         provider: 'bitbucket'
       }
     }
@@ -75,7 +76,7 @@ app.get('/callback', (req, res) => {
 })
 
 app.get('/success', (req, res) => {
-  res.send('')
+  res.send('world <br> hello the')
 })
 
 app.get('/', (req, res) => {

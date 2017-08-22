@@ -76,7 +76,7 @@ app.get('/callback', (req, res) => {
 })
 
 app.get('/success', (req, res) => {
-  res.send('world <br> hello the')
+  res.send('')
 })
 
 app.get('/', (req, res) => {

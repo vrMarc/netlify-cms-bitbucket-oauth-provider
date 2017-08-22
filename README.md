@@ -61,4 +61,5 @@ backend:
 
 Basic instructions for pushing to heroku are available in the [original blog post](http://www.vxk.cz/tips/2017/05/18/netlify-cms/).
 
-You can also use a service like Zeit Now to deploy this js oauth server
+You can also use a service like Zeit Now to deploy this js oauth server for example using now command line:
+now -e OAUTH_CLIENT_ID={bitbucket oauth id} -e OAUTH_CLIENT_SECRET={bitbucket oauth secret}
